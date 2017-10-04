@@ -1,0 +1,12 @@
+{
+    "name": "baghayi/skyroom",
+    "description": "Library for interacting with Skyroom service",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Hossein Baghayi",
+            "email": "hossein.baghayi@gmail.com"
+        }
+    ],
+    "require": {}
+}
