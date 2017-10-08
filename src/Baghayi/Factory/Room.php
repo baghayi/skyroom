@@ -2,6 +2,8 @@
 namespace Baghayi\Factory;
 
 use Baghayi\Room as RoomValueObject;
+use Baghayi\User;
+use Baghayi\Collection\Users;
 
 final class Room extends Factory {
 
@@ -20,7 +22,28 @@ final class Room extends Factory {
         $result = json_decode($response->getBody(), true);
 
         if($result['ok'] == true) {
-            return new RoomValueObject($result['result']);
+            $room = new RoomValueObject($result['result']);
+            $room->setRoomFactory($this);
+            return $room;
+        }
+
+        // throw proper exceptions in case of any kinds of errors
+    }
+
+    public function users(int $roomId) : Users
+    {
+        $response = $this->make('getRoomUsers', [
+            'room_id' => $roomId,
+        ]);
+
+        $result = json_decode($response->getBody(), true);
+
+        if($result['ok'] == true) {
+            $users = new Users();
+            array_map(function($user) use ($users) {
+                $users[] = User::fromArray($user);
+            }, $result['result']);
+            return $users;
         }
 
         // throw proper exceptions in case of any kinds of errors
