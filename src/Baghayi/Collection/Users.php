@@ -23,6 +23,15 @@ class Users extends \ArrayObject
         return $this->roomFactory->attachUser($this->roomId, $user, $accessLevel);
     }
 
+    public function detach(User $user) : bool
+    {
+        if(is_null($this->roomId)) {
+            throw new \Exception('Users are not bound to any room!');
+        }
+
+        return $this->roomFactory->detachUser($this->roomId, $user);
+    }
+
     public function setRoomFactory(RoomFactory $factory)
     {
         $this->roomFactory = $factory;
