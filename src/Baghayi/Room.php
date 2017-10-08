@@ -2,6 +2,7 @@
 namespace Baghayi;
 
 use Baghayi\Factory\Room as RoomFactory;
+use Baghayi\Collection\Users;
 
 final class Room {
 
@@ -18,9 +19,11 @@ final class Room {
         return $this->id;
     }
 
-    public function users()
+    public function users() : Users
     {
-        return $this->roomFactory->users($this->id);
+        $users = $this->roomFactory->users($this->id);
+        $users->setRoomFactory($this->roomFactory);
+        return $users;
     }
 
     public function setRoomFactory(RoomFactory $factory)

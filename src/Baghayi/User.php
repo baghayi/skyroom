@@ -3,6 +3,11 @@ namespace Baghayi;
 
 final class User {
 
+    const ACCESS_LEVEL_NORMAL     = 1;
+    const ACCESS_LEVEL_PRESENTER  = 2;
+    const ACCESS_LEVEL_OPERATOR   = 3;
+    const ACCESS_LEVEL_ADMIN      = 4;
+
     private $id;
     private $username;
     private $nickname;

@@ -4,12 +4,13 @@ namespace Baghayi\Factory;
 use Baghayi\Room as RoomValueObject;
 use Baghayi\User;
 use Baghayi\Collection\Users;
+use Baghayi\Exception\AlreadyExists;
 
 final class Room extends Factory {
 
     public function create(string $name) : RoomValueObject
     {
-        $response = $this->make('createRoom', [
+        $result = $this->make('createRoom', [
             'name'  => 'room-' . md5($name),
             'title' => $name,
             'guest_login' => false,
@@ -19,34 +20,38 @@ final class Room extends Factory {
                  */
             ]);
 
-        $result = json_decode($response->getBody(), true);
-
-        if($result['ok'] == true) {
-            $room = new RoomValueObject($result['result']);
-            $room->setRoomFactory($this);
-            return $room;
-        }
-
-        // throw proper exceptions in case of any kinds of errors
+        $room = new RoomValueObject($result);
+        $room->setRoomFactory($this);
+        return $room;
     }
 
     public function users(int $roomId) : Users
     {
-        $response = $this->make('getRoomUsers', [
+        $result = $this->make('getRoomUsers', [
             'room_id' => $roomId,
         ]);
 
-        $result = json_decode($response->getBody(), true);
+        $users = new Users();
+        $users->setRoomId($roomId);
 
-        if($result['ok'] == true) {
-            $users = new Users();
-            array_map(function($user) use ($users) {
-                $users[] = User::fromArray($user);
-            }, $result['result']);
-            return $users;
-        }
+        array_map(function($user) use ($users) {
+            $users[] = User::fromArray($user);
+        }, $result);
 
-        // throw proper exceptions in case of any kinds of errors
+        return $users;
     }
+
+    public function attachUser(int $roomId, User $user, int $accessLevel) : bool
+    {
+        $result = $this->make('addRoomUsers', [
+            'room_id' => $roomId,
+            'users' => [
+                ['user_id' => $user->id(), 'access' => $accessLevel]
+            ]
+        ]);
+
+        return $result;
+    }
+
 }
 
