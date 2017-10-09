@@ -3,11 +3,12 @@ namespace Baghayi\Collection;
 
 use Baghayi\User;
 use Baghayi\Factory\Room as RoomFactory;
+use Baghayi\Request;
 
 class Users extends \ArrayObject
 {
     private $roomId;
-    private $roomFactory;
+    private $request;
 
     public function setRoomId(int $roomId)
     {
@@ -20,7 +21,14 @@ class Users extends \ArrayObject
             throw new \Exception('Users are not bound to any room!');
         }
 
-        return $this->roomFactory->attachUser($this->roomId, $user, $accessLevel);
+        $result = $this->request->make('addRoomUsers', [
+            'room_id' => $this->roomId,
+            'users' => [
+                ['user_id' => $user->id(), 'access' => $accessLevel]
+            ]
+        ]);
+
+        return $result;
     }
 
     public function detach(User $user) : bool
@@ -32,8 +40,8 @@ class Users extends \ArrayObject
         return $this->roomFactory->detachUser($this->roomId, $user);
     }
 
-    public function setRoomFactory(RoomFactory $factory)
+    public function setRequest(Request $request)
     {
-        $this->roomFactory = $factory;
+        $this->request = $request;
     }
 }

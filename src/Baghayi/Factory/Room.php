@@ -48,18 +48,6 @@ final class Room {
         return $users;
     }
 
-    public function attachUser(int $roomId, User $user, int $accessLevel) : bool
-    {
-        $result = $this->make('addRoomUsers', [
-            'room_id' => $roomId,
-            'users' => [
-                ['user_id' => $user->id(), 'access' => $accessLevel]
-            ]
-        ]);
-
-        return $result;
-    }
-
     public function detachUser(int $roomId, User $user) : bool
     {
         $result = $this->make('removeRoomUsers', [
