@@ -1,11 +1,11 @@
 <?php
-namespace Baghayi\Factory;
+namespace Baghayi;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use Baghayi\Exception\AlreadyExists;
 
-abstract class Factory {
+final class Request {
 
     private $correspondingErrorExceptions = [
         'The record already exists.' => AlreadyExists::class,
