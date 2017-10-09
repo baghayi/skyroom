@@ -1,16 +1,24 @@
 <?php
 namespace Baghayi\Factory;
 
-use Baghayi\Room as RoomValueObject;
+use Baghayi\Room as RoomItself;
 use Baghayi\User;
 use Baghayi\Collection\Users;
 use Baghayi\Exception\AlreadyExists;
+use Baghayi\Request;
 
-final class Room extends Factory {
+final class Room {
 
-    public function create(string $name) : RoomValueObject
+    private $request;
+
+    public function __construct(Request $request)
     {
-        $result = $this->make('createRoom', [
+        $this->request = $request;
+    }
+
+    public function create(string $name) : RoomItself
+    {
+        $result = $this->request->make('createRoom', [
             'name'  => 'room-' . md5($name),
             'title' => $name,
             'guest_login' => false,
@@ -20,8 +28,7 @@ final class Room extends Factory {
                  */
             ]);
 
-        $room = new RoomValueObject($result);
-        $room->setRoomFactory($this);
+        $room = new RoomItself($this->request, $result);
         return $room;
     }
 
