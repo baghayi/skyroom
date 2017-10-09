@@ -1,14 +1,21 @@
 <?php
 namespace Baghayi\Factory;
 
-use Baghayi\User as UserValueObject;
+use Baghayi\User as UserItself;
+use Baghayi\Request;
 
-final class User extends Factory {
+final class User {
 
+    private $request;
 
-    public function register(array $data) : UserValueObject
+    public function __construct(Request $request)
     {
-        $result = $this->make('createUser', [
+        $this->request = $request;
+    }
+
+    public function register(array $data) : UserItself
+    {
+        $result = $this->request->make('createUser', [
             'username' => $data['username'],
             'nickname' => $data['first_name'],
             'password' => $data['password'],
@@ -18,7 +25,7 @@ final class User extends Factory {
             'is_public' => true,
         ]);
 
-        return new UserValueObject($result);
+        return new UserItself($result);
     }
 }
 
