@@ -48,15 +48,5 @@ final class Room {
         return $users;
     }
 
-    public function detachUser(int $roomId, User $user) : bool
-    {
-        $result = $this->make('removeRoomUsers', [
-            'room_id' => $roomId,
-            'users' => [$user->id()]
-        ]);
-
-        return $result;
-    }
-
 }
 

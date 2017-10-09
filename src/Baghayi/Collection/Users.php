@@ -2,7 +2,6 @@
 namespace Baghayi\Collection;
 
 use Baghayi\User;
-use Baghayi\Factory\Room as RoomFactory;
 use Baghayi\Request;
 
 class Users extends \ArrayObject
@@ -37,7 +36,12 @@ class Users extends \ArrayObject
             throw new \Exception('Users are not bound to any room!');
         }
 
-        return $this->roomFactory->detachUser($this->roomId, $user);
+        $result = $this->request->make('removeRoomUsers', [
+            'room_id' => $this->roomId,
+            'users' => [$user->id()]
+        ]);
+
+        return $result;
     }
 
     public function setRequest(Request $request)
