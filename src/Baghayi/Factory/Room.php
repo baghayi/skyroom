@@ -32,21 +32,5 @@ final class Room {
         return $room;
     }
 
-    public function users(int $roomId) : Users
-    {
-        $result = $this->make('getRoomUsers', [
-            'room_id' => $roomId,
-        ]);
-
-        $users = new Users();
-        $users->setRoomId($roomId);
-
-        array_map(function($user) use ($users) {
-            $users[] = User::fromArray($user);
-        }, $result);
-
-        return $users;
-    }
-
 }
 
