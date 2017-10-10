@@ -18,7 +18,7 @@ final class Room {
 
     public function create(string $name) : RoomItself
     {
-        $result = $this->request->make('createRoom', [
+        $roomId = $this->request->make('createRoom', [
             'name'  => 'room-' . md5($name),
             'title' => $name,
             'guest_login' => false,
@@ -28,7 +28,7 @@ final class Room {
                  */
             ]);
 
-        $room = new RoomItself($this->request, $result);
+        $room = new RoomItself($roomId, $this->request);
         return $room;
     }
 

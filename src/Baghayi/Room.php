@@ -10,7 +10,7 @@ final class Room {
     private $id;
     private $request;
 
-    public function __construct(Request $request, int $roomId)
+    public function __construct(int $roomId, Request $request)
     {
         $this->id = $roomId;
         $this->request = $request;
