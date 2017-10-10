@@ -40,4 +40,11 @@ final class Room {
         return $users;
     }
 
+    public function url(bool $relative = false) : string
+    {
+        return $this->request->make('getRoomUrl', [
+            'room_id' => $this->id,
+            'relative' => $relative,
+        ]);
+    }
 }
