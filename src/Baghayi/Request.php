@@ -5,6 +5,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use Baghayi\Exception\AlreadyExists;
 use Baghayi\Exception\AccessDenied;
+use Baghayi\Exception\DuplicateRoom;
 
 final class Request {
 
@@ -12,6 +13,7 @@ final class Request {
         'The record already exists.' => AlreadyExists::class,
         'User has no access to the room' => AccessDenied::class,
         'Access to the resource is denied.' => AccessDenied::class,
+        'There is a room with the same name.' => DuplicateRoom::class,
     ]; 
 
     private $http;
