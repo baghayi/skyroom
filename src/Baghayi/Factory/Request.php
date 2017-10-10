@@ -2,14 +2,17 @@
 namespace Baghayi\Factory;
 
 use GuzzleHttp\Client;
+use Baghayi\Request as RequestItself;
 
-final class GuzzleClient {
+final class Request {
 
     public function create(string $baseUri)
     {
-        return new Client([
+        $http = new Client([
             'base_uri' => $baseUri,
         ]);
+
+        return new RequestItself($http);
     }
 
 }
