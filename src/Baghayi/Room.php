@@ -47,4 +47,9 @@ final class Room {
             'relative' => $relative,
         ]);
     }
+
+    public function update(array $data)
+    {
+        return $this->request->make('updateRoom', array_merge($data, ['room_id' => $this->id]));
+    }
 }
