@@ -75,4 +75,13 @@ final class User {
 
         $this->$property = $value;
     }
+
+    public function loginUrl(Room $room, int $ttl = 60) : string
+    {
+        return $this->request->make('getLoginUrl', [
+            'room_id' => $room->id(),
+            'user_id' => $this->id,
+            'ttl' => $ttl,
+        ]);
+    }
 }
