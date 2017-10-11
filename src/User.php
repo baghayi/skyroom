@@ -42,7 +42,7 @@ final class User {
         return $this->accessLevel;
     }
 
-    public function fromArray(array $data)
+    public static function fromArray(array $data)
     {
         $user = new self($data['user_id']);
         $user->username = $data['username'];
