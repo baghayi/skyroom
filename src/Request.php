@@ -6,6 +6,7 @@ use GuzzleHttp\Psr7\Response;
 use Baghayi\Skyroom\Exception\AlreadyExists;
 use Baghayi\Skyroom\Exception\AccessDenied;
 use Baghayi\Skyroom\Exception\DuplicateRoom;
+use Baghayi\Skyroom\Exception\UnavailableUsername;
 
 final class Request {
 
@@ -14,6 +15,7 @@ final class Request {
         'User has no access to the room' => AccessDenied::class,
         'Access to the resource is denied.' => AccessDenied::class,
         'There is a room with the same name.' => DuplicateRoom::class,
+        'There is another user using the same username' => UnavailableUsername::class,
     ]; 
 
     private $http;
@@ -46,7 +48,14 @@ final class Request {
         /**
          * Not a proper way of handling errors :(
          */
-        $errorException = $this->correspondingErrorExceptions[$result['error_message']] ?? null;
+        $errorException = null;
+        foreach($this->correspondingErrorExceptions as $error => $class) {
+            if(false != strstr($result['error_message'], $error)) {
+                $errorException = $class;
+                break;
+            }
+        }
+
         if(is_null($errorException)) {
             throw new \Exception($result['error_message'], $result['error_code']);
         }
