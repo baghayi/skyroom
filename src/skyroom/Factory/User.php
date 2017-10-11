@@ -1,8 +1,8 @@
 <?php
-namespace Baghayi\Factory;
+namespace Baghayi\Skyroom\Factory;
 
-use Baghayi\User as UserItself;
-use Baghayi\Request;
+use Baghayi\Skyroom\User as UserItself;
+use Baghayi\Skyroom\Request;
 
 final class User {
 

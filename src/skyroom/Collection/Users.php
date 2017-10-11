@@ -1,8 +1,8 @@
 <?php
-namespace Baghayi\Collection;
+namespace Baghayi\Skyroom\Collection;
 
-use Baghayi\User;
-use Baghayi\Request;
+use Baghayi\Skyroom\User;
+use Baghayi\Skyroom\Request;
 
 class Users extends \ArrayObject
 {

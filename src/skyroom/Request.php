@@ -1,11 +1,11 @@
 <?php
-namespace Baghayi;
+namespace Baghayi\Skyroom;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
-use Baghayi\Exception\AlreadyExists;
-use Baghayi\Exception\AccessDenied;
-use Baghayi\Exception\DuplicateRoom;
+use Baghayi\Skyroom\Exception\AlreadyExists;
+use Baghayi\Skyroom\Exception\AccessDenied;
+use Baghayi\Skyroom\Exception\DuplicateRoom;
 
 final class Request {
 

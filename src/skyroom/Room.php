@@ -1,9 +1,9 @@
 <?php
-namespace Baghayi;
+namespace Baghayi\Skyroom;
 
-use Baghayi\Collection\Users;
-use Baghayi\Request;
-use Baghayi\User;
+use Baghayi\Skyroom\Collection\Users;
+use Baghayi\Skyroom\Request;
+use Baghayi\Skyroom\User;
 
 final class Room {
 

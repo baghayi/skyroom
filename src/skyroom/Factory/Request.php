@@ -1,8 +1,8 @@
 <?php
-namespace Baghayi\Factory;
+namespace Baghayi\Skyroom\Factory;
 
 use GuzzleHttp\Client;
-use Baghayi\Request as RequestItself;
+use Baghayi\Skyroom\Request as RequestItself;
 
 final class Request {
 

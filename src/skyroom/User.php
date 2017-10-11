@@ -1,7 +1,7 @@
 <?php
-namespace Baghayi;
+namespace Baghayi\Skyroom;
 
-use Baghayi\Request;
+use Baghayi\Skyroom\Request;
 
 final class User {
 

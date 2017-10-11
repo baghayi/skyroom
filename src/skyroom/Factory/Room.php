@@ -1,12 +1,12 @@
 <?php
-namespace Baghayi\Factory;
+namespace Baghayi\Skyroom\Factory;
 
-use Baghayi\Room as RoomItself;
-use Baghayi\User;
-use Baghayi\Collection\Users;
-use Baghayi\Exception\AlreadyExists;
-use Baghayi\Request;
-use Baghayi\Exception\DuplicateRoom;
+use Baghayi\Skyroom\Room as RoomItself;
+use Baghayi\Skyroom\User;
+use Baghayi\Skyroom\Collection\Users;
+use Baghayi\Skyroom\Exception\AlreadyExists;
+use Baghayi\Skyroom\Request;
+use Baghayi\Skyroom\Exception\DuplicateRoom;
 
 final class Room {
 
