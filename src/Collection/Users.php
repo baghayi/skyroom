@@ -44,6 +44,17 @@ class Users extends \ArrayObject
         return $result;
     }
 
+    public function exists(User $user) : bool
+    {
+        foreach($this as $item) {
+            if($item->id() === $user->id()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public function setRequest(Request $request)
     {
         $this->request = $request;
