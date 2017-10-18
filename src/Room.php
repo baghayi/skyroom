@@ -52,4 +52,18 @@ final class Room {
     {
         return $this->request->make('updateRoom', array_merge($data, ['room_id' => $this->id]));
     }
+
+    public function disable()
+    {
+        $this->update([
+            'status' => 0
+        ]);
+    }
+
+    public function enable()
+    {
+        $this->update([
+            'status' => 1
+        ]);
+    }
 }
