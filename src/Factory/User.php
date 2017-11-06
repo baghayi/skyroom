@@ -25,7 +25,7 @@ final class User {
             'is_public' => true,
         ]);
 
-        return new UserItself($result);
+        return new UserItself($result, $this->request);
     }
 }
 
