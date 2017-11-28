@@ -17,7 +17,7 @@ final class User {
     {
         $result = $this->request->make('createUser', [
             'username' => $data['username'],
-            'nickname' => $data['first_name'],
+            'nickname' => $this->nickname($data['first_name']),
             'password' => $data['password'],
             'email' => $data['email'],
             'fname' => $data['first_name'],
@@ -26,6 +26,11 @@ final class User {
         ]);
 
         return new UserItself($result, $this->request);
+    }
+
+    private function nickname($name)
+    {
+        return strlen($name) >= 3 ? $name : $name . rand(100, 999);
     }
 }
 
