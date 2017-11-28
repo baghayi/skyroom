@@ -22,7 +22,7 @@ final class User {
             'email' => $data['email'],
             'fname' => $data['first_name'],
             'lname' => $data['last_name'],
-            'is_public' => true,
+            'is_public' => false,
         ]);
 
         return new UserItself($result, $this->request);
