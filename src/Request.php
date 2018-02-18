@@ -14,7 +14,7 @@ final class Request {
         'The record already exists.' => AlreadyExists::class,
         'User has no access to the room' => AccessDenied::class,
         'Access to the resource is denied.' => AccessDenied::class,
-        'There is a room with the same name.' => DuplicateRoom::class,
+        'اتاقی با همین نام وجود دارد. از نام دیگری استفاده نمایید.' => DuplicateRoom::class,
         'There is another user using the same username' => UnavailableUsername::class,
     ]; 
 
