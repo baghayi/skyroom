@@ -21,7 +21,7 @@ final class Room {
     {
         try {
             $roomId = $this->request->make('createRoom', [
-                'name'  => 'room-' . md5($name),
+                'name'  => 'room-' . md5($name) . '-' . rand(1, 99999999),
                 'title' => $name,
                 'guest_login' => false,
                 /*
