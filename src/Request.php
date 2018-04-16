@@ -30,7 +30,7 @@ final class Request {
         $response = $this->http->request('POST', null, [
             'json' => [
                 'action' => $action,
-                'params' => json_encode($params),
+                'params' => $params,
             ],
         ]);
 
