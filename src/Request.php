@@ -15,7 +15,7 @@ final class Request {
         'User has no access to the room' => AccessDenied::class,
         'Access to the resource is denied.' => AccessDenied::class,
         'اتاقی با همین نام وجود دارد. از نام دیگری استفاده نمایید.' => DuplicateRoom::class,
-        'There is another user using the same username' => UnavailableUsername::class,
+        'نام کاربری تکراری است' => UnavailableUsername::class,
     ]; 
 
     private $http;
