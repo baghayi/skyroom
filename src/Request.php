@@ -9,7 +9,11 @@ use Baghayi\Skyroom\Exception\DuplicateRoom;
 use Baghayi\Skyroom\Exception\UnavailableUsername;
 use Baghayi\Skyroom\Exception\InvalidRoomName;
 
-class Request {
+class Request
+{
+    const ERROR_CODES = [
+        15 => Exception\NotFound::class,
+    ];
 
     private $correspondingErrorExceptions = [
         'The record already exists.' => AlreadyExists::class,
@@ -47,6 +51,11 @@ class Request {
 
     private function handleErrors(array $result)
     {
+        $errorException = self::ERROR_CODES[$result['error_code']] ?? null;
+        if (!is_null($errorException)) {
+            throw new $errorException($result['error_message']);
+        }
+
         /**
          * Not a proper way of handling errors :(
          */
