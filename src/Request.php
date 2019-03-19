@@ -7,6 +7,7 @@ use Baghayi\Skyroom\Exception\AlreadyExists;
 use Baghayi\Skyroom\Exception\AccessDenied;
 use Baghayi\Skyroom\Exception\DuplicateRoom;
 use Baghayi\Skyroom\Exception\UnavailableUsername;
+use Baghayi\Skyroom\Exception\InvalidRoomName;
 
 final class Request {
 
@@ -16,6 +17,7 @@ final class Request {
         'Access to the resource is denied.' => AccessDenied::class,
         'اتاقی با همین نام وجود دارد. از نام دیگری استفاده نمایید.' => DuplicateRoom::class,
         'نام کاربری تکراری است' => UnavailableUsername::class,
+        'نام اتاق معتبر نیست.' => InvalidRoomName::class,
     ]; 
 
     private $http;
