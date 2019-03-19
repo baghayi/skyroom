@@ -66,4 +66,13 @@ final class Room {
             'status' => 1
         ]);
     }
+
+    public function usage(): Hour
+    {
+        $room = $this->request->make('getRoom', [
+            'room_id' => $this->id,
+        ]);
+
+        return new Hour($room['time_usage'] / 60);
+    }
 }

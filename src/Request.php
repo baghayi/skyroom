@@ -9,7 +9,7 @@ use Baghayi\Skyroom\Exception\DuplicateRoom;
 use Baghayi\Skyroom\Exception\UnavailableUsername;
 use Baghayi\Skyroom\Exception\InvalidRoomName;
 
-final class Request {
+class Request {
 
     private $correspondingErrorExceptions = [
         'The record already exists.' => AlreadyExists::class,
