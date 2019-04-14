@@ -22,7 +22,7 @@ final class Room {
         try {
             $roomId = $this->request->make('createRoom', [
                 'name'  => 'room-' . md5($name) . '-' . rand(1, 99999999),
-                'title' => $name,
+                'title' => mb_substr($name, 0, 128),
                 'guest_login' => false,
                 /*
                  *"op_login_first" => true,
