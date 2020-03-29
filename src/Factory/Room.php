@@ -17,16 +17,16 @@ final class Room {
         $this->request = $request;
     }
 
-    public function create(string $name) : RoomItself
+    public function create(string $name, int $max_users = null) : RoomItself
     {
         try {
             $roomId = $this->request->make('createRoom', [
                 'name'  => 'room-' . md5($name) . '-' . rand(1, 99999999),
                 'title' => mb_substr($name, 0, 128),
                 'guest_login' => false,
+                "max_users" => $max_users
                 /*
                  *"op_login_first" => true,
-                 *"max_users" => 1000
                  */
                 ]);
         }
