@@ -36,8 +36,6 @@ final class Room {
         }, $result);
 
         return $users;
-
-        return $users;
     }
 
     public function url(bool $relative = false) : string
