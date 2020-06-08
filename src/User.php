@@ -84,4 +84,12 @@ final class User {
             'ttl' => $ttl,
         ]);
     }
+
+    public function timeUsage()
+    {
+        $data = $this->request->make('getUser', [
+            'user_id' => $this->id,
+        ]);
+        return  $data['time_usage'];
+    }
 }
