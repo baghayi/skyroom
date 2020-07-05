@@ -17,7 +17,7 @@ final class User {
     {
         $result = $this->request->make('createUser', [
             'username' => $data['username'],
-            'nickname' => $this->nickname($data['first_name']),
+            'nickname' => $this->nickname(trim($data['first_name'].' '.$data['last_name'])),
             'password' => $data['password'],
             'email' => $data['email'],
             'fname' => $data['first_name'],
